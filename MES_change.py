@@ -11,8 +11,8 @@ h = 3 / (n-1)
 a = 0
 b = 3
 
-G = 6.67 * pow(10, -11)
-#G = 1
+#G = 6.67 * pow(10, -11)
+G = 1
 
 def en(n):
     def ex(x):
@@ -54,14 +54,14 @@ L = [0 for i in range(n-2)]
 
 def fillL(v):
     #return 4 * pi * G * gauss(en(v), 1, 2) error
-    return 4 * pi * G * quad(en(v), 1, 2)[0]
+    return 4 * pi * G * (quad(en(v), 0, 1)[0] + 2*quad(en(v), 1, 2)[0] + 3*quad(en(v), 2, 3)[0])
 
 for v in range(n-2):
     L[v] = fillL(v)
 
 X = solve(B, L)
 
-u = lambda x: - x/ 3 + 5
+u = lambda x: - x + 7
 
 # def w(x):
 #     res = 0
@@ -82,5 +82,3 @@ ylist = [fi(i) for i in xlist]
 # print(ylist)
 plot(xlist, ylist)
 show()
-
-
